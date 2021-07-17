@@ -1,4 +1,4 @@
-package com.company;
+package com;
 
 import java.util.ArrayList;
 
@@ -16,6 +16,7 @@ public class Parse {
         }
         this.str = str;
         createTokens();
+        Lexer.isValid(list);
     }
 
     private void    createTokens() throws Exception {
@@ -36,7 +37,7 @@ public class Parse {
         }
     }
 
-    private int     parseX(int i) throws Exception{
+    private int     parseX(int i) throws Exception {
         String token = "";
         int len = i;
 
@@ -46,19 +47,20 @@ public class Parse {
 
         while (len != str.length() && str.charAt(len) == ' ')
             len++;
-        if (len != str.length() && str.charAt(len) != '^')
-            throw new Exception("Invalid equation");
-        token += str.charAt(len++);
-
-        while (len != str.length() && str.charAt(len) == ' ')
-            len++;
-
-        while (len != str.length() && "1234567890".indexOf(str.charAt(len)) != -1)
+        if (len != str.length() && str.charAt(len) != '^') {
+            list.add(new Token(token));
+        } else if (len != str.length() && str.charAt(len) == '^') {
             token += str.charAt(len++);
-        if (token.length() < 3)
-            throw new Exception("Invalid equation");
-        list.add(new Token(token));
 
+            while (len != str.length() && str.charAt(len) == ' ')
+                len++;
+
+            while (len != str.length() && "1234567890".indexOf(str.charAt(len)) != -1)
+                token += str.charAt(len++);
+            if (token.length() < 3)
+                throw new Exception("Invalid equation");
+            list.add(new Token(token));
+        }
         return (len - 1);
     }
 

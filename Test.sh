@@ -1,0 +1,45 @@
+#!/bin/zsh
+javac com/*.java
+
+tput setaf 2; echo "Java: 123 + (X ^ 2 - 15) = 12"; tput setaf 7;
+java com/Main "123 + (X ^ 2 - 15) = 12";
+echo "";
+tput setaf 2; echo "Java: 123 + )(X ^ 2 - 15) = 12"; tput setaf 7;
+java com/Main "123 + )(X ^ 2 - 15) = 12";
+tput setaf 2; echo "Incorrect open parenthesis - )"; tput setaf 7;
+echo "";
+tput setaf 2; echo "Java: 123 + ((X ^ 2 - 15) = 12"; tput setaf 7;
+java com/Main "123 + ((X ^ 2 - 15) = 12";
+tput setaf 2; echo "The closed parenthesis is missing - )"; tput setaf 7;
+echo "";
+tput setaf 2; echo "Java: 123 + (X ^ 2 - 15 = 12"; tput setaf 7;
+java com/Main "123 + (X ^ 2 - 15 = 12";
+tput setaf 2; echo "The closed parenthesis is missing - )"; tput setaf 7;
+echo "";
+tput setaf 2; echo "Java: 123 + X + (X ^ 2 - 15) = 12"; tput setaf 7;
+java com/Main "123 + X + (X ^ 2 - 15) = 12";
+echo "";
+tput setaf 2; echo "Java: 123 + X^0 = (X ^ 2 - 15) = 12"; tput setaf 7;
+java com/Main "123 + X^0 = (X ^ 2 - 15) = 12";
+tput setaf 2; echo "Incorrect equality - \"=\" "; tput setaf 7;
+echo "";
+tput setaf 2; echo "Java: 123 + (X^0 = (X ^ 2 - 15)) + 12"; tput setaf 7;
+java com/Main "123 + (X^0 = (X ^ 2 - 15)) + 12";
+tput setaf 2; echo "The closed parenthesis is missing - )"; tput setaf 7;
+echo "";
+tput setaf 2; echo "Java: +123 + X - X ^ 2 - 15 = 12"; tput setaf 7;
+java com/Main "+123 + X - X ^ 2 - 15 = 12";
+tput setaf 2; echo "Invalid operator - \"+\""; tput setaf 7;
+echo "";
+tput setaf 2; echo "Java: +123 + X - X ^ 2 - 15 = 12"; tput setaf 7;
+java com/Main "+123 + X - X ^ 2 - 15 = 12";
+tput setaf 2; echo "Invalid operator - \"+\""; tput setaf 7;
+echo "";
+tput setaf 2; echo "Java: 11 + X - + = X ^ 2 "; tput setaf 7;
+java com/Main "11 + X - + = X ^ 2 ";
+tput setaf 2; echo "Invalid operators - \"-\" and \"+\""; tput setaf 7;
+echo "";
+tput setaf 2; echo "Java: + X = X ^ 2 "; tput setaf 7;
+java com/Main "+ X = X ^ 2 ";
+tput setaf 2; echo "Invalid operator - \"+\""; tput setaf 7;
+echo "";

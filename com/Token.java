@@ -1,4 +1,4 @@
-package com.company;
+package com;
 
 public class Token {
     enum Type {
@@ -7,7 +7,7 @@ public class Token {
         x0,
         x1,
         x2,
-        bracket
+        parenthesis
     }
 
     private Type type;
@@ -25,17 +25,17 @@ public class Token {
         if ("+-*/=".indexOf(c) != -1)
             this.type = Type.operator;
         else
-            this.type = Type.bracket;
+            this.type = Type.parenthesis;
     }
 
     public Token(String str) {
-        if (str.charAt(2) == '0') {
+        if (str.length() == 1) {
+            this.type = type.x1;
+        } else if (str.charAt(2) == '0') {
             this.type = Type.x0;
-        }
-        else if (str.charAt(2) == '1' && str.length() == 3) {
+        } else if (str.charAt(2) == '1' && str.length() == 3) {
             this.type = Type.x1;
-        }
-        else {
+        } else {
             this.type = Type.x2;
         }
         this.str = str;
@@ -58,7 +58,7 @@ public class Token {
     }
 
     public String getToken() {
-        if (type == Type.operator || type == Type.bracket)
+        if (type == Type.operator || type == Type.parenthesis)
             return Character.toString(op);
         if (type == Type.number)
             return Double.toString(num);
