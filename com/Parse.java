@@ -17,6 +17,10 @@ public class Parse {
         this.str = str;
         createTokens();
         Lexer.isValid(list);
+        Solution.reduceForm(list);
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i).getToken());
+        }
     }
 
     private void    createTokens() throws Exception {
@@ -47,7 +51,7 @@ public class Parse {
 
         while (len != str.length() && str.charAt(len) == ' ')
             len++;
-        if (len != str.length() && str.charAt(len) != '^') {
+        if (len == str.length() || str.charAt(len) != '^') {
             list.add(new Token(token));
         } else if (len != str.length() && str.charAt(len) == '^') {
             token += str.charAt(len++);

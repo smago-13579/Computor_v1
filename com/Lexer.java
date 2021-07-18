@@ -8,6 +8,63 @@ public class Lexer {
         Parentheses(list);
         Equality(list);
         Operators(list);
+        Variables(list);
+//        Power(list);
+    }
+
+//    private static void Power(ArrayList<Token> list) {
+//        int max_pow = 0;
+//        int min_pow = -1;
+//
+//
+//        for (int i = 0; i > list.size(); i++) {
+//            Token token = list.get(i);
+//            if (token.getType() == Token.Type.x2) {
+//                String str = token.getStr().substring(2);
+//                if (max_pow < Integer.parseInt(str))
+//                    max_pow = Integer.parseInt(str);
+//            } else if (token.getType() == Token.Type.x1 && min_pow == -1) {
+//                min_pow = 1;
+//            }
+//        }
+//    }
+
+    private static void Variables(ArrayList<Token> list) {
+        char c = 'a';
+
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getType() == Token.Type.x0 ||
+                    list.get(i).getType() == Token.Type.x1 ||
+                    list.get(i).getType() == Token.Type.x2) {
+                c = list.get(i).getStr().charAt(0);
+                break;
+            }
+        }
+
+        for (int i = 0; i < list.size(); i++) {
+            Token token = list.get(i);
+            if (token.getType() != Token.Type.operator &&
+                    token.getType() != Token.Type.parenthesis && i + 1 != list.size()) {
+                if (list.get(i + 1).getType() != Token.Type.operator &&
+                        list.get(i + 1).getType() !=  Token.Type.parenthesis) {
+                    throw new RuntimeException("Invalid Expression: \"" + token.getToken() +
+                            " " + list.get(i + 1).getToken() + "\"");
+                } else if (list.get(i + 1).getType() == Token.Type.parenthesis &&
+                        list.get(i + 1).getOp() == '(') {
+                    throw new RuntimeException("Invalid Expression: \"" + token.getToken() + " (\"");
+                }
+            }
+        }
+
+        for (int i = 0; i < list.size(); i++) {
+            Token token = list.get(i);
+            if ((token.getType() == Token.Type.x0 ||
+                    token.getType() == Token.Type.x1 ||
+                    token.getType() == Token.Type.x2) && c != token.getStr().charAt(0)) {
+                throw new RuntimeException("Different Variables: \"" + c + " and " +
+                        token.getStr().charAt(0) + "\"");
+            }
+        }
     }
 
     private static void Operators(ArrayList<Token> list) {
@@ -27,6 +84,27 @@ public class Lexer {
                     list.get(i + 1).getOp() != '-') {
                     throw new RuntimeException("Invalid operators - \"" + token.getOp() +
                             "\" and \"" + list.get(i + 1).getOp() + "\"");
+                } else if (list.get(i + 1).getType() == Token.Type.parenthesis && list.get(i + 1).getOp() == ')') {
+                    throw new RuntimeException("Variable is missing after operator - \"" + token.getOp() + "\"");
+                }
+            } else if (token.getType() == Token.Type.parenthesis) {
+                if (token.getOp() == ')' && i + 1 < list.size()) {
+                    if (list.get(i + 1).getType() != Token.Type.operator &&
+                            list.get(i + 1).getType() != Token.Type.parenthesis) {
+                        throw new RuntimeException("Operator is missing after - \")\"");
+                    } else if (list.get(i + 1).getType() == Token.Type.parenthesis &&
+                            list.get(i + 1).getOp() == '(') {
+                        throw new RuntimeException("Invalid parentheses - )(");
+                    }
+                } else if (token.getOp() == '(') {
+                    if (list.get(i + 1).getType() == Token.Type.parenthesis &&
+                            list.get(i + 1).getOp() == ')') {
+                        throw new RuntimeException ("Invalid parentheses - ()");
+                    } else if (list.get(i + 1).getType() == Token.Type.operator &&
+                            list.get(i + 1).getOp() != '-') {
+                        throw new RuntimeException ("Invalid operator \"" +
+                                list.get(i + 1).getOp() + "\" after \"(\"");
+                    }
                 }
             }
         }
@@ -37,7 +115,7 @@ public class Lexer {
             Token token = list.get(i);
             if (token.getType() == Token.Type.parenthesis) {
                 if (token.getOp() == ')' && count == 0) {
-                    throw new RuntimeException("Incorrect open parenthesis - )");
+                    throw new RuntimeException("The open parenthesis is missing - \"(\"");
                 } else if (token.getOp() == '(') {
                     count++;
                 } else {
@@ -51,10 +129,10 @@ public class Lexer {
                 if (len < list.size() && list.get(len).getOp() == ')')
                     throw new RuntimeException("Equality in parentheses - \"( = )\"");
                 else
-                    throw new RuntimeException("The closed parenthesis is missing - )");
+                    throw new RuntimeException("The closed parenthesis is missing - \")\"");
             }
             if (i + 1 == list.size() && count != 0) {
-                throw new RuntimeException("The closed parenthesis is missing - )");
+                throw new RuntimeException("The closed parenthesis is missing - \")\"");
             }
         }
     }

@@ -30,7 +30,7 @@ public class Token {
 
     public Token(String str) {
         if (str.length() == 1) {
-            this.type = type.x1;
+            this.type = Type.x1;
         } else if (str.charAt(2) == '0') {
             this.type = Type.x0;
         } else if (str.charAt(2) == '1' && str.length() == 3) {
@@ -38,6 +38,7 @@ public class Token {
         } else {
             this.type = Type.x2;
         }
+        this.num = 1;
         this.str = str;
     }
 
@@ -57,11 +58,19 @@ public class Token {
         return str;
     }
 
+    public void setNum(double num) {
+        this.num = num;
+    }
+
     public String getToken() {
         if (type == Type.operator || type == Type.parenthesis)
             return Character.toString(op);
         if (type == Type.number)
             return Double.toString(num);
+        if (this.num != 1) {
+            String string = Double.toString(num) + this.str;
+            return string;
+        }
         return this.str;
     }
 }
