@@ -86,9 +86,11 @@ tput setaf 2; echo "Java: (11 + X - 10) * A^2 = X ^ 2 "; tput setaf 7;
 java com/Main "(11 + X - 10) * A^2 = X ^ 2 ";
 tput setaf 2; echo "Different Variables: \"X and A\""; tput setaf 7;
 echo "";
-tput setaf 2; echo "Java: 10 * X - 10 + 5 * X ^ 2 = X ^ 2 "; tput setaf 7;
-java com/Main "10 * X - 10 + 5 * X ^ 2 = X ^ 2 ";
-tput setaf 2; echo "Different Variables: \"X and A\""; tput setaf 7;
+
+
+java com/Main "10 * X ^ 2 = 0 + ."
+echo "";
+java com/Main "10 * X ^ 1 = 50"
 echo "";
 
 

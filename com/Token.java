@@ -31,9 +31,10 @@ public class Token {
     public Token(String str) {
         if (str.length() == 1) {
             this.type = Type.x1;
+            str += "^1";
         } else if (str.charAt(2) == '0') {
             this.type = Type.x0;
-        } else if (str.charAt(2) == '1' && str.length() == 3) {
+        } else if (str.charAt(2) == '1') {
             this.type = Type.x1;
         } else {
             this.type = Type.x2;
@@ -60,6 +61,28 @@ public class Token {
 
     public void setNum(double num) {
         this.num = num;
+
+        if (this.num == 0) {
+            this.type = Type.number;
+            this.str = "";
+        }
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public void setType(int x) {
+        if (x == 0) {
+            this.type = Type.number;
+            this.str = "";
+            return;
+        }
+        else if (x == 1)
+            this.type = Type.x1;
+        else if (x >= 2)
+            this.type = Type.x2;
+        this.str = this.str.substring(0, 2) + x;
     }
 
     public String getToken() {
@@ -68,7 +91,7 @@ public class Token {
         if (type == Type.number)
             return Double.toString(num);
         if (this.num != 1) {
-            String string = Double.toString(num) + this.str;
+            String string = Double.toString(num) + " * " + this.str;
             return string;
         }
         return this.str;

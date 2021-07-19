@@ -19,8 +19,9 @@ public class Parse {
         Lexer.isValid(list);
         Solution.reduceForm(list);
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i).getToken());
+            System.out.print(list.get(i).getToken() + " ");
         }
+        System.out.println();
     }
 
     private void    createTokens() throws Exception {
@@ -32,13 +33,16 @@ public class Parse {
             else if ("+-*/=()".indexOf(c) != -1) {
                 list.add(new Token(c));
             }
-            else if (c != ' ') {
+            else if (c != ' ' && c != '.') {
                 i = parseX(i);
             }
+            else if (c == '.')
+                throw new Exception("Invalid equation");
         }
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).getToken());
         }
+        System.out.println();
     }
 
     private int     parseX(int i) throws Exception {
@@ -61,7 +65,7 @@ public class Parse {
 
             while (len != str.length() && "1234567890".indexOf(str.charAt(len)) != -1)
                 token += str.charAt(len++);
-            if (token.length() < 3)
+            if (token.length() != 3)
                 throw new Exception("Invalid equation");
             list.add(new Token(token));
         }
