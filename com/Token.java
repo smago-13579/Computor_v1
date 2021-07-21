@@ -18,6 +18,7 @@ public class Token {
     public Token(double d) {
         this.num = d;
         this.type = Type.number;
+
     }
 
     public Token(char c) {
@@ -31,7 +32,6 @@ public class Token {
     public Token(String str) {
         if (str.length() == 1) {
             this.type = Type.x1;
-            str += "^1";
         } else if (str.charAt(2) == '0') {
             this.type = Type.x0;
         } else if (str.charAt(2) == '1') {
@@ -40,7 +40,10 @@ public class Token {
             this.type = Type.x2;
         }
         this.num = 1;
-        this.str = str;
+        if (this.type == Type.x1)
+            this.str = str.substring(0, 1);
+        else
+            this.str = str;
     }
 
     public Type getType() {
@@ -68,6 +71,11 @@ public class Token {
         }
     }
 
+    public void setNum(char c) {
+        if (c == '-')
+            this.num = -this.num;
+    }
+
     public void setType(Type type) {
         this.type = type;
     }
@@ -78,11 +86,13 @@ public class Token {
             this.str = "";
             return;
         }
-        else if (x == 1)
+        else if (x == 1) {
             this.type = Type.x1;
-        else if (x >= 2)
-            this.type = Type.x2;
-        this.str = this.str.substring(0, 2) + x;
+            this.str = this.str.substring(0, 1);
+            return;
+        }
+        this.type = Type.x2;
+        this.str = this.str.substring(0, 1) + "^" + x;
     }
 
     public String getToken() {
@@ -90,6 +100,10 @@ public class Token {
             return Character.toString(op);
         if (type == Type.number)
             return Double.toString(num);
+        if (this.num == -1){
+            String string = "- " + this.str;
+            return string;
+        }
         if (this.num != 1) {
             String string = Double.toString(num) + " * " + this.str;
             return string;

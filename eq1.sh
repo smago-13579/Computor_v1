@@ -21,3 +21,46 @@ tput setaf 2; echo "Java: 10 * X * X / 0 - (10 + 5) * X ^ 2 / 5 = X ^ 2 / X ^ 2 
 java com/Main "10 * X * X / 0 - (10 + 5) * X ^ 2 / 5 = X ^ 2 / X ^ 2 * 10 / X";
 tput setaf 2; echo "Can't divide by zero: 10.0 * X^2 / 0.0"; tput setaf 7;
 echo "";
+tput setaf 2; echo "Java: 10 * X / 12 - 10 * X^0 + 0 * 51 * X ^ 2 / 5 = 0 / X"; tput setaf 7;
+java com/Main "10 * X / 12 - 10 * X^0 + 0 * 51 * X ^ 2 / 5 = 0 / X";
+echo "";
+tput setaf 2; echo "Java: 10 * X / 12 - 10 * X^0 + 0 * 51 * X ^ 2 / 5 = 0 / 10"; tput setaf 7;
+java com/Main "10 * X / 12 - 10 * X^0 + 0 * 51 * X ^ 2 / 5 = 0 / 10";
+echo "";
+tput setaf 2; echo "Java: 10 / 0 - 10 * X^0 + 0 * 51 * X ^ 2 / 5 = 0 / 10"; tput setaf 7;
+java com/Main "10  / 0 - 10 * X^0 + 0 * 51 * X ^ 2 / 5 = 0 / 10";
+tput setaf 2; echo "Can't divide by zero: 10.0 / 0.0"; tput setaf 7;
+echo "";
+tput setaf 2; echo "Java: 10 * X * X / X^2 + 0 * 51 * X ^ 2 / 5 = 0 / 10"; tput setaf 7;
+java com/Main "10 * X * X / X^2 + 0 * 51 * X ^ 2 / 5 = 0 / 10";
+echo "";
+tput setaf 2; echo "Java: X^2 + 10 * X - 25 + 3 * X ^ 2 = 10"; tput setaf 7;
+java com/Main "X^2 + 10 * X - 25 + 3 * X ^ 2 = 10";
+echo "";
+tput setaf 2; echo "Java: (X^2 + 5*X^2) - 10 * X - (25 + 3) * X ^ 2 = 10"; tput setaf 7;
+java com/Main "(X^2 + 5*X^2) - 10 * X - (25 + 3) * X ^ 2 = 10";
+echo "";
+tput setaf 2; echo "Java: (X^2 - 5*X^2) - 1 * X - (25 + 3) * X ^ 2 = 10"; tput setaf 7;
+java com/Main "(X^2 - 5*X^2) - 1 * X - (25 + 3) * X ^ 2 = 10";
+echo "";
+tput setaf 2; echo "Java: (X^2 -10*X + 5*X^2 + 5*X) - X - (25 + 3) * X ^ 2 = (10 + 10 + X)"; tput setaf 7;
+java com/Main "(X^2 -10*X + 5*X^2 + 5*X) - X - (25 + 3) * X ^ 2 = (10 + 10 + X)";
+echo "";
+tput setaf 2; echo "Java: (X^2 -10*X + 5*X^2 + 5*X - 6*X^2 + 5*X) - X - (25 + 3) * X ^ 2 = (10 + 10 + X)"; tput setaf 7;
+java com/Main "(X^2 -10*X + 5*X^2 + 5*X - 6*X^2 + 5*X) - X - (25 + 3) * X ^ 2 = (10 + 10 + X)";
+echo "";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
