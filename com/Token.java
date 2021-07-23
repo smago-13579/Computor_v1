@@ -1,6 +1,9 @@
 package com;
 
+import java.util.ArrayList;
+
 public class Token {
+
     enum Type {
         operator,
         number,
@@ -18,7 +21,6 @@ public class Token {
     public Token(double d) {
         this.num = d;
         this.type = Type.number;
-
     }
 
     public Token(char c) {
@@ -60,6 +62,10 @@ public class Token {
 
     public String getStr() {
         return str;
+    }
+
+    public void setStr(String str) {
+        this.str = str;
     }
 
     public void setNum(double num) {
@@ -109,5 +115,18 @@ public class Token {
             return string;
         }
         return this.str;
+    }
+
+    public static void printTokens(ArrayList<Token> list) {
+        for (int i = 0; i < list.size(); i++) {
+            if (i != 0 && list.get(i - 1).getType() != Type.operator &&
+                    list.get(i).getNum() > 0) {
+                System.out.print("+ " + list.get(i).getToken() + " ");
+            }
+            else {
+                System.out.print(list.get(i).getToken() + " ");
+            }
+        }
+        System.out.println();
     }
 }

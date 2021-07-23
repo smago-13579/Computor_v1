@@ -3,6 +3,7 @@ package com;
 import java.util.ArrayList;
 
 public class Parse {
+
     private static final String validSymbols = "() +-*/^=1234567890.";
     private ArrayList<Token> list = new ArrayList<>();
     private String str;
@@ -18,10 +19,10 @@ public class Parse {
         createTokens();
         Lexer.isValid(list);
         Solution.reduceForm(list);
-        for (int i = 0; i < list.size(); i++) {
-            System.out.print(list.get(i).getToken() + " ");
-        }
-        System.out.println();
+//        for (int i = 0; i < list.size(); i++) {
+//            System.out.print(list.get(i).getToken() + " ");
+//        }
+//        System.out.println();
     }
 
     private void    createTokens() throws Exception {
@@ -39,10 +40,10 @@ public class Parse {
             else if (c == '.')
                 throw new Exception("Invalid equation");
         }
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i).getToken());
-        }
-        System.out.println();
+//        for (int i = 0; i < list.size(); i++) {
+//            System.out.println(list.get(i).getToken());
+//        }
+//        System.out.println();
     }
 
     private int     parseX(int i) throws Exception {
