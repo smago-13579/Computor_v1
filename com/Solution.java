@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Solution {
 
-    public static ArrayList<Token> reduceForm(ArrayList<Token> list) {
+    public static void reduceForm(ArrayList<Token> list) {
         int equal;
 
         for (int i = 0; i < list.size(); i++) {
@@ -20,23 +20,12 @@ public class Solution {
         Maths.addition(list, 0, equal, 0);
         Maths.addition(list, equal + 1, list.size(), 0);
         removeEmptyToken(list);
-        System.out.print("Reduced form: ");
-        Token.printTokens(list);
-        transferAndAlign(list);
 
-        System.out.print("Step 0: ");
-        Token.printTokens(list);
-        Maths.addition(list, 0, list.size() - 1, 0);
-        removeEmptyToken(list);
-        System.out.print("Step 1: ");
-        Token.printTokens(list);
 
-        Lexer.checkPower(list);
 
-        return list;
     }
 
-    private static void transferAndAlign(ArrayList<Token> list) {
+    public static void transferAndAlign(ArrayList<Token> list) {
         int equal = 0;
 
         for (; list.get(equal).getOp() != '='; equal++);
@@ -53,7 +42,7 @@ public class Solution {
             list.add(new Token(0.0));
     }
 
-    private static void removeEmptyToken(ArrayList<Token> list) {
+    public static void removeEmptyToken(ArrayList<Token> list) {
         int equal = 0;
 
         for (; list.get(equal).getOp() != '='; equal++);

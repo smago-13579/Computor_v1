@@ -17,8 +17,7 @@ public class Parse {
         }
         this.str = str;
         createTokens();
-        Lexer.isValid(list);
-        Solution.reduceForm(list);
+
 //        for (int i = 0; i < list.size(); i++) {
 //            System.out.print(list.get(i).getToken() + " ");
 //        }
@@ -94,5 +93,9 @@ public class Parse {
             return false;
         }
         return true;
+    }
+
+    public ArrayList<Token> getList() {
+        return list;
     }
 }

@@ -6,7 +6,10 @@ public class Main {
         try {
             if (args.length != 1)
                 throw new Exception("Invalid number of arguments");
-            Parse parse = new Parse(args[0]);
+            Equation equation = new Equation(args[0]);
+            equation.reduceForm();
+            equation.steps(1);
+            equation.steps(2);
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
