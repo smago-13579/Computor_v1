@@ -61,6 +61,9 @@ echo "";
 tput setaf 2; echo "(X - 1) * (X - 1) * (X - 1) + 5 = 10"; tput setaf 7;
 java com/Main "(X - 1) * (X - 1) * (X - 1) + 5 = 10";
 echo "";
+tput setaf 2; echo "6 * X^0 + 11 * X^1+5* X^2 = 1*X^0 + 1 * X^1"; tput setaf 7;
+java com/Main "6 * X^0 + 11 * X^1+5* X^2 = 1*X^0 + 1 * X^1";
+echo "";
 
 
 

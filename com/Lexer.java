@@ -11,25 +11,6 @@ public class Lexer {
         Variables(list);
     }
 
-    public static void checkPower(ArrayList<Token> list) {
-        int max_pow = 0;
-
-        for (int i = 0; i < list.size(); i++) {
-            Token token = list.get(i);
-            if (token.getType() == Token.Type.x2) {
-                String str = token.getStr().substring(2);
-                if (max_pow < Integer.parseInt(str))
-                    max_pow = Integer.parseInt(str);
-            } else if (token.getType() == Token.Type.x1) {
-                if (max_pow < 1)
-                    max_pow = 1;
-            }
-        }
-        System.out.println("Polynomial degree: " + max_pow);
-        if (max_pow > 2)
-            throw new RuntimeException("The polynomial degree is strictly greater than 2, I can't solve.");
-    }
-
     private static void Variables(ArrayList<Token> list) {
         char c = 'a';
 

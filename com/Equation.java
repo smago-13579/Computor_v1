@@ -18,7 +18,11 @@ public class Equation {
         steps(1,"Step 1: ");
         steps(2,"Step 2: ");
         steps(3, "Reduced form: ");
-        checkPower();
+
+        int i = checkPower();
+        if (i == 2) {
+            
+        }
     }
 
     public void steps(int i, String str) {
@@ -39,7 +43,7 @@ public class Equation {
         Token.printTokens(list);
     }
 
-    public void checkPower() {
+    public int checkPower() {
         int max_pow = 0;
 
         for (int i = 0; i < list.size(); i++) {
@@ -56,5 +60,6 @@ public class Equation {
         System.out.println("Polynomial degree: " + max_pow);
         if (max_pow > 2)
             throw new RuntimeException("The polynomial degree is strictly greater than 2, I can't solve.");
+        return max_pow;
     }
 }

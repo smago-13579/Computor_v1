@@ -20,9 +20,29 @@ public class Solution {
         Maths.addition(list, 0, equal, 0);
         Maths.addition(list, equal + 1, list.size(), 0);
         removeEmptyToken(list);
+    }
 
+    public static void sortVariables(ArrayList<Token> list) {
+        int len = 0;
 
+        for (; list.get(len).getType() != Token.Type.operator; len++);
 
+        for (int i = 1; i < len; i++) {
+            int prev = i;
+            while (--prev >= 0) {
+                if (list.get(i).getType().ordinal() > list.get(prev).getType().ordinal()) {
+                    Token token = list.set(prev, list.get(i));
+                    list.set(i--, token);
+                }
+                else
+                    break;
+            }
+        }
+        if (list.get(0).getNum() < 0) {
+            for (int i = 0; i < len; i++) {
+                list.get(i).setNum('-');
+            }
+        }
     }
 
     public static void transferAndAlign(ArrayList<Token> list) {
@@ -71,6 +91,7 @@ public class Solution {
                 close = i;
                 close = Maths.multiplyDivide(list, open, close);
                 close = Maths.addition(list, open, close, 0);
+                i = close;
                 if (removeParentheses(list, open, close))
                     i = -1;
             }
