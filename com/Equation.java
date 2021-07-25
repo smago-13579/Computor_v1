@@ -13,26 +13,48 @@ public class Equation {
         Lexer.isValid(list);
     }
 
-    public void reduceForm() {
-        Solution.reduceForm(list);
-        System.out.print("Reduced form: ");
+    public void sequenceOfActions() {
+        steps(0,"Step 0: ");
+        steps(1,"Step 1: ");
+        steps(2,"Step 2: ");
+        steps(3, "Reduced form: ");
+        checkPower();
+    }
+
+    public void steps(int i, String str) {
+        if (i == 0) {
+            Solution.reduceForm(list);
+        }
+        else if (i == 1) {
+            Solution.transferAndAlign(list);
+        }
+        else if (i == 2) {
+            Maths.addition(list, 0, list.size() - 1, 0);
+            Solution.removeEmptyToken(list);
+        }
+        else if (i == 3) {
+            Solution.sortVariables(list);
+        }
+        System.out.print(str);
         Token.printTokens(list);
     }
 
-    public void steps(int i) {
-        if (i == 0) {
-            Solution.transferAndAlign(list);
-            System.out.print("Step 0: ");
-            Token.printTokens(list);
+    public void checkPower() {
+        int max_pow = 0;
+
+        for (int i = 0; i < list.size(); i++) {
+            Token token = list.get(i);
+            if (token.getType() == Token.Type.x2) {
+                String str = token.getStr().substring(2);
+                if (max_pow < Integer.parseInt(str))
+                    max_pow = Integer.parseInt(str);
+            } else if (token.getType() == Token.Type.x1) {
+                if (max_pow < 1)
+                    max_pow = 1;
+            }
         }
-        else if (i == 1) {
-            Maths.addition(list, 0, list.size() - 1, 0);
-            Solution.removeEmptyToken(list);
-            System.out.print("Step 1: ");
-            Token.printTokens(list);
-            Lexer.checkPower(list);
-        }
+        System.out.println("Polynomial degree: " + max_pow);
+        if (max_pow > 2)
+            throw new RuntimeException("The polynomial degree is strictly greater than 2, I can't solve.");
     }
-
-
 }
