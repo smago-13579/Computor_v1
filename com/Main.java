@@ -8,6 +8,7 @@ public class Main {
                 throw new Exception("Invalid number of arguments");
             Equation equation = new Equation(args[0]);
             equation.sequenceOfActions();
+//            SquareRoot.square(1234.567 * 1234.567);
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());

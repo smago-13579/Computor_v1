@@ -21,7 +21,7 @@ public class Equation {
 
         int i = checkPower();
         if (i == 2) {
-            
+            Maths.findDiscriminantAndSolve(list);
         }
     }
 

@@ -23,6 +23,21 @@ public class Maths {
         return end;
     }
 
+    public static void findDiscriminantAndSolve(ArrayList<Token> list) {
+        ArrayList<Double> coeffs = Coefficients.getCoefficients(list);
+        double disc = coeffs.get(0);
+        if (disc > 0) {
+            System.out.println("Discriminant is strictly positive, the two solutions are:");
+            SquareRoot.square(disc);
+        }
+        else if (disc == 0) {
+            System.out.println("Discriminant = 0, the one solution is:");
+            double solve = (-1 * coeffs.get(2)) / (2 * coeffs.get(1));
+            System.out.println(solve);
+        }
+
+    }
+
     public static int addition(ArrayList<Token> list, int open, int close, int count) {
         for (int var = open; var < close; var++) {
             Token token1 = list.get(var);
