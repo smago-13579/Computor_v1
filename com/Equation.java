@@ -23,6 +23,9 @@ public class Equation {
         if (i == 2) {
             Maths.findDiscriminantAndSolve(list);
         }
+        else {
+            Maths.solveWithoutDiscriminant(list, i);
+        }
     }
 
     public void steps(int i, String str) {

@@ -1,6 +1,7 @@
 #!/bin/zsh
 javac com/*.java
 
+
 echo "";
 tput setaf 2; echo "Java: 123 + )(X ^ 2 - 15) = 12"; tput setaf 7;
 java com/Main "123 + )(X ^ 2 - 15) = 12";
@@ -86,11 +87,13 @@ tput setaf 2; echo "Java: (11 + X - 10) * A^2 = X ^ 2 "; tput setaf 7;
 java com/Main "(11 + X - 10) * A^2 = X ^ 2 ";
 tput setaf 2; echo "Different Variables: \"X and A\""; tput setaf 7;
 echo "";
-
-
-java com/Main "10 * X ^ 2 = 0 + ."
+tput setaf 2; echo "Java: 10 * X * X / 0 - (10 + 5) * X ^ 2 / 5 = X ^ 2 / X ^ 2 * 10 / X"; tput setaf 7;
+java com/Main "10 * X * X / 0 - (10 + 5) * X ^ 2 / 5 = X ^ 2 / X ^ 2 * 10 / X";
+tput setaf 2; echo "Can't divide by zero: 10.0 * X^2 / 0.0"; tput setaf 7;
 echo "";
-java com/Main "10 * X ^ 1 = 50"
+tput setaf 2; echo "Java: 10 / 0 - 10 * X^0 + 0 * 51 * X ^ 2 / 5 = 0 / 10"; tput setaf 7;
+java com/Main "10  / 0 - 10 * X^0 + 0 * 51 * X ^ 2 / 5 = 0 / 10";
+tput setaf 2; echo "Can't divide by zero: 10.0 / 0.0"; tput setaf 7;
 echo "";
 
 

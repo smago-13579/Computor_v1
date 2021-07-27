@@ -18,10 +18,6 @@ public class Parse {
         this.str = str;
         createTokens();
 
-//        for (int i = 0; i < list.size(); i++) {
-//            System.out.print(list.get(i).getToken() + " ");
-//        }
-//        System.out.println();
     }
 
     private void    createTokens() throws Exception {
@@ -37,12 +33,8 @@ public class Parse {
                 i = parseX(i);
             }
             else if (c == '.')
-                throw new Exception("Invalid equation");
+                throw new Exception("Invalid equation - \".\"");
         }
-//        for (int i = 0; i < list.size(); i++) {
-//            System.out.println(list.get(i).getToken());
-//        }
-//        System.out.println();
     }
 
     private int     parseX(int i) throws Exception {
@@ -50,7 +42,7 @@ public class Parse {
         int len = i;
 
         if (str.charAt(len) == '^')
-            throw new Exception("Invalid equation");
+            throw new Exception("Invalid equation - \"^\"");
         token += str.charAt(len++);
 
         while (len != str.length() && str.charAt(len) == ' ')
@@ -66,7 +58,7 @@ public class Parse {
             while (len != str.length() && "1234567890".indexOf(str.charAt(len)) != -1)
                 token += str.charAt(len++);
             if (token.length() != 3)
-                throw new Exception("Invalid equation");
+                throw new Exception("Invalid equation degree");
             list.add(new Token(token));
         }
         return (len - 1);

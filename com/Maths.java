@@ -28,14 +28,55 @@ public class Maths {
         double disc = coeffs.get(0);
         if (disc > 0) {
             System.out.println("Discriminant is strictly positive, the two solutions are:");
-            SquareRoot.square(disc);
-        }
-        else if (disc == 0) {
-            System.out.println("Discriminant = 0, the one solution is:");
-            double solve = (-1 * coeffs.get(2)) / (2 * coeffs.get(1));
+            double sqrt = SquareRoot.square(disc);
+            double solve = (-1 * coeffs.get(2) + sqrt) / (2 * coeffs.get(1));
+            System.out.println(solve);
+            solve = (-1 * coeffs.get(2) - sqrt) / (2 * coeffs.get(1));
             System.out.println(solve);
         }
+        else if (disc == 0) {
+            System.out.println("Discriminant = 0, the solution is:");
+            double solve = (-1 * coeffs.get(2)) / (2 * coeffs.get(1));
+            System.out.println(solve);
+        } else if (disc < 0) {
+            String str1, str2;
+            System.out.println("Discriminant is strictly negative, the two complex solutions are:");
+            double sqrt = SquareRoot.square(-disc);
+            double solve = (-1 * coeffs.get(2)) / (2 * coeffs.get(1));
+            if (solve != 0) {
+                str1 = Double.toString(solve) + " + i * " +
+                        Double.toString(sqrt / (2 * coeffs.get(1)));
+                str2 = Double.toString(solve) + " - i * " +
+                        Double.toString(sqrt / (2 * coeffs.get(1)));
+            }
+            else {
+                str1 = "i * " + Double.toString(sqrt / (2 * coeffs.get(1)));
+                str2 = "-i * " + Double.toString(sqrt / (2 * coeffs.get(1)));
+            }
+            System.out.println(str1);
+            System.out.println(str2);
+        }
+    }
 
+    public static void solveWithoutDiscriminant(ArrayList<Token> list, int i) {
+        double solve;
+
+        if (i == 1) {
+            if (list.get(1).getType() != Token.Type.operator) {
+                solve = (-1 * list.get(1).getNum()) / list.get(0).getNum();
+            }
+            else {
+                solve = 0;
+            }
+            System.out.println("The solution is: ");
+            System.out.println(solve);
+        }
+        else if (list.get(0).getNum() == list.get(2).getNum()){
+            System.out.println("Any real number is a solution!!!");
+        }
+        else {
+            System.out.println("There is no solution!!!");
+        }
     }
 
     public static int addition(ArrayList<Token> list, int open, int close, int count) {

@@ -10,7 +10,7 @@ public class SquareRoot {
         double value = 0;
         double interim = 0;
 
-        System.out.println("disc: " + disc);
+//        System.out.println("discriminant: " + disc);
         String[] str = String.valueOf(disc).split("\\.");
         if (str[0].length() % 2 != 0)
             str[0] = "0" + str[0];
@@ -60,7 +60,7 @@ public class SquareRoot {
         for ( ; i > 0; i--) {
             value /= 10;
         }
-        System.out.println(value);
+//        System.out.println("square root: " + value);
 
         return value;
     }
